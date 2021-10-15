@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    {
+      "name": "General"
+    },
+    {
+      "name": "Food"
+    },
+	{
+      "name": "Movie"
+    },
+	{
+      "name": "Music"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+###################################################################################
+#                            SIMPLE CHAT APP WITH GRPC                            #
+###################################################################################
+Author: Wendy
+
+This simple chat app allows registered user to talk to other registered user in a
+room provided by the server. Each room has its own chat history so switching room
+will not cause chats from other room to merge with the current room. This app uses
+golang and should be run from console or terminal.
+
+How it works:
+1. User signs in to the server with a username and password (through flag options 
+   or prompt)
+2. Server verifies the user credentials which then will allow the user to continue
+3. User selects which room they would like to join (provided by the server)
+4. After user joins, they must press ENTER to start typing their message
+5. A prompt will ask the user to type in their message
+6. That's it, the server will keep the chat history as long as it lives
+Bonus: user can leave the room by typing "/leave" and join other room
+
+Pros:
+- Passwords are encrypted with SHA256
+- Many chat rooms to select from
+- Incoming messages will not interrupt user while they are typing their message 
+  (thanks to goroutine)
+- Chat history are kept in the server memory (once it's dead then bye bye)
+- No messages in the wrong room (I hope not)
+
+Cons:
+- Very basic
+- Chat history is not saved on storage
+- Logged in user is not tracked (double, triple, even more login with same 
+  credentials)
+- No room capacity
+- No custom room or private room
+- Must press ENTER twice to send a message (I am limited by the technology of my 
+  time)
+
+That sums up everything this app can do and, I hope could do in the future.
+Thank you.
+
+EXTRA NOTE:
+These are login credentials for 2 accounts
+
+username: boris123
+password: thelunatic
+
+username: RNG_maya
+password: musictomyears

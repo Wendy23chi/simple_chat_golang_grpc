@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package chat;
+
+// Define GRPC service for chatting
+service Chat {
+  // Obtains list of rooms available
+  rpc Login (UserCred) returns (Reply) {}
+
+  // Obtains list of rooms available
+  rpc GetRooms (UserCred) returns (stream Room) {}
+
+  // Connects client to a certain room
+  rpc JoinRoom (RoomRequest) returns (Reply) {}
+
+  // Sends client message to chat history of a certain room
+  rpc SendMessage (ClientMessage) returns (Reply) {}
+
+  // Obtains chat history of a certain room
+  rpc GetMessages (MessageRequest) returns (stream ClientMessage) {}
+
+  // Obtains the amount of messages in chat history
+  rpc GetMessagesCount (UserCred) returns (Reply) {}
+}
+
+// Basic user credentials
+message UserCred {
+  string username = 1;
+  string password = 2;
+}
+
+// Array of user credentials
+message userList {
+  repeated UserCred users = 1;
+}
+
+// Basic chat room
+message Room {
+  string name = 1;
+}
+
+// Array of chat rooms
+message RoomList {
+  repeated Room rooms = 1;
+}
+
+// Param for joining room
+message RoomRequest {
+  Room room = 1;
+  UserCred cred = 2;
+}
+
+// Basic reply from the server
+message Reply {
+  bool isSuccess = 1;
+  string message = 2;
+}
+
+// Param for sending user message to the server
+message ClientMessage {
+  string message = 1;
+  Room room = 2;
+  UserCred cred = 3;
+}
+
+// Param for retrieving user messages from the server
+message MessageRequest {
+  Room room = 1;
+  UserCred cred = 2;
+  int32 startIndex = 3;
+  int32 endIndex = 4;
+}
+
+// Array of user messages
+message ChatHistory {
+  repeated ClientMessage messages = 1;
+}
+
